@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaDumbbell, FaRunning, FaHeartbeat } from 'react-icons/fa';
 
 const Services = () => {
@@ -19,29 +20,34 @@ const Services = () => {
       id: 3,
       icon: <FaHeartbeat size={50} />,
       title: "Personal Training",
-      description: "Get personalized attention and achieve your goals faster with our expert trainers."
+      description: "Get personalized attention and achieve your fitness goals faster."
     }
   ];
 
   return (
-    <div name="services" className="w-full min-h-screen bg-white py-16">
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Our Services</h2>
-          <p className="text-gray-600 mt-4">Comprehensive fitness solutions for every goal</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map(({ id, icon, title, description }) => (
-            <div key={id} className="p-6 text-center rounded-lg shadow-lg hover:shadow-xl transition-all">
-              <div className="flex justify-center text-red-600 mb-4">
-                {icon}
+    <div name="services" className="w-full min-h-screen bg-black text-white py-20">
+      <div className="max-w-screen-lg mx-auto p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold text-center mb-8">Our Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map(({ id, icon, title, description }) => (
+              <div
+                key={id}
+                className="bg-[var(--secondary-color)] p-6 rounded-lg text-center hover:scale-105 duration-300"
+              >
+                <div className="text-[var(--primary-color)] flex justify-center mb-4">
+                  {icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{title}</h3>
+                <p className="text-gray-400">{description}</p>
               </div>
-              <h3 className="text-xl font-bold mb-2">{title}</h3>
-              <p className="text-gray-600">{description}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );

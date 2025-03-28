@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCheck } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Pricing = () => {
   const plans = [
@@ -11,7 +11,7 @@ const Pricing = () => {
         "Access to gym floor",
         "Basic equipment usage",
         "Locker room access",
-        "2 group classes/month"
+        "Free parking"
       ]
     },
     {
@@ -19,10 +19,10 @@ const Pricing = () => {
       name: "Premium",
       price: "59",
       features: [
-        "Full gym access",
-        "All equipment access",
-        "Unlimited group classes",
-        "1 personal training session/month"
+        "All Basic features",
+        "Group classes included",
+        "Sauna access",
+        "Fitness assessment"
       ]
     },
     {
@@ -30,46 +30,47 @@ const Pricing = () => {
       name: "Elite",
       price: "99",
       features: [
-        "24/7 gym access",
-        "All premium features",
-        "4 personal training sessions/month",
-        "Nutrition consultation"
+        "All Premium features",
+        "Personal trainer sessions",
+        "Nutrition consultation",
+        "24/7 gym access"
       ]
     }
   ];
 
   return (
-    <div name="pricing" className="w-full min-h-screen bg-gray-100 py-16">
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Membership Plans</h2>
-          <p className="text-gray-600 mt-4">Choose the perfect plan for your fitness journey</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plans.map(({ id, name, price, features }) => (
-            <div key={id} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all">
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4">{name}</h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold">${price}</span>
-                  <span className="text-gray-600">/month</span>
+    <div name="pricing" className="w-full min-h-screen bg-[var(--secondary-color)] text-white py-20">
+      <div className="max-w-screen-lg mx-auto p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold text-center mb-8">Membership Plans</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {plans.map(({ id, name, price, features }) => (
+              <div
+                key={id}
+                className="bg-black p-6 rounded-lg text-center hover:scale-105 duration-300"
+              >
+                <h3 className="text-xl font-bold mb-2">{name}</h3>
+                <div className="text-4xl font-bold text-[var(--primary-color)] mb-4">
+                  ${price}<span className="text-sm text-gray-400">/month</span>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-2 mb-6">
                   {features.map((feature, index) => (
-                    <li key={index} className="flex items-center">
-                      <FaCheck className="text-green-500 mr-2" />
-                      <span className="text-gray-600">{feature}</span>
+                    <li key={index} className="text-gray-400">
+                      {feature}
                     </li>
                   ))}
                 </ul>
-                <button className="w-full mt-8 bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition-colors">
-                  Join Now
+                <button className="bg-[var(--primary-color)] text-white px-6 py-2 rounded-md hover:bg-opacity-80">
+                  Choose Plan
                 </button>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );

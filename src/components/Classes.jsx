@@ -1,55 +1,60 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Classes = () => {
   const classes = [
     {
       id: 1,
-      name: "HIIT Training",
-      time: "Mon, Wed, Fri - 8:00 AM",
+      name: "CrossFit",
+      time: "6:00 AM - 7:00 AM",
       trainer: "John Smith",
-      image: "/class1.jpg"
+      image: "/crossfit.jpg"
     },
     {
       id: 2,
-      name: "Yoga Flow",
-      time: "Tue, Thu - 9:00 AM",
+      name: "Yoga",
+      time: "8:00 AM - 9:00 AM",
       trainer: "Sarah Johnson",
-      image: "/class2.jpg"
+      image: "/yoga.jpg"
     },
     {
       id: 3,
-      name: "CrossFit",
-      time: "Mon, Wed, Fri - 6:00 PM",
+      name: "Boxing",
+      time: "5:00 PM - 6:00 PM",
       trainer: "Mike Wilson",
-      image: "/class3.jpg"
+      image: "/boxing.jpg"
     }
   ];
 
   return (
-    <div name="classes" className="w-full min-h-screen bg-gray-100 py-16">
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Our Classes</h2>
-          <p className="text-gray-600 mt-4">Join our diverse range of fitness classes</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {classes.map(({ id, name, time, trainer, image }) => (
-            <div key={id} className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="h-48 bg-gray-300">
-                {/* Image placeholder */}
+    <div name="classes" className="w-full min-h-screen bg-[var(--secondary-color)] text-white py-20">
+      <div className="max-w-screen-lg mx-auto p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold text-center mb-8">Our Classes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {classes.map(({ id, name, time, trainer, image }) => (
+              <div
+                key={id}
+                className="relative group overflow-hidden rounded-lg"
+              >
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full h-64 object-cover group-hover:scale-110 duration-300"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
+                  <h3 className="text-xl font-bold">{name}</h3>
+                  <p className="text-gray-300">{time}</p>
+                  <p className="text-[var(--primary-color)]">Trainer: {trainer}</p>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{name}</h3>
-                <p className="text-gray-600 mb-2">{time}</p>
-                <p className="text-gray-600">Trainer: {trainer}</p>
-                <button className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
-                  Book Now
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );
